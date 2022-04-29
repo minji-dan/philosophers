@@ -40,10 +40,12 @@ typedef struct s_info
     pthread_mutex_t eating;
 } t_info;
 
-typedef struct s_simul
+typedef struct s_dining
 {
     t_philo *philos;
     t_info info;
-} t_simul;
+} t_dining;
+
+int print_err(const char *str);
 
 #endif

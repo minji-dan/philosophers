@@ -2,5 +2,5 @@
 
 int main(int argc, char **argv)
 {
-    t_simul simul;
+    t_dining dining;
 }
