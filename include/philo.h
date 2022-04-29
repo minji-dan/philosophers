@@ -7,6 +7,9 @@
 #include <pthread.h>
 #include <sys/time.h>
 
+typedef pthread_mutex_t t_mutex;
+typedef pthread_t t_thread;
+
 typedef struct s_philo
 {
     int my_seat;
@@ -28,7 +31,7 @@ typedef struct s_info
     int time_to_sleep;
     int num_must_eat;
 
-    long long curr_time;
+    long long cur_time;
     long long start_time;
 
     t_philo *philos;
@@ -36,5 +39,11 @@ typedef struct s_info
     pthread_mutex_t print;
     pthread_mutex_t eating;
 } t_info;
+
+typedef struct s_table
+{
+    t_philo *philos;
+    t_info info;
+} t_table;
 
 #endif
