@@ -46,6 +46,14 @@ typedef struct s_dining
     t_info info;
 } t_dining;
 
+int ft_isspace(char c);
+int ft_isdigit(char c);
+int ft_atoi(const char *str, int *ret);
+int ft_strlen(const char *str);
 int print_err(const char *str);
+
+int check_input(const char *str);
+static int check_arg(int argc, char **argv, int *ret);
+int handle_argc(t_dining *dining, int argc, char **argv);
 
 #endif
