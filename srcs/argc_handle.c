@@ -46,4 +46,5 @@ int handle_argc(t_dining *dining, int argc, char **argv)
         !ft_atoi(argv[3], &(dining->info.time_to_eat)) || !ft_atoi(argv[4], &(dining->info.time_to_sleep)) \ 
     || !check_arg(argc, argv, &(dining->info.num_must_eat)))
         return (print_err("Error\n"));
+    /**/
 }

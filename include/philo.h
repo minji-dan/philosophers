@@ -19,11 +19,12 @@ typedef struct s_philo
     long long check_last_eat_time;
 
     t_info *info;
+    t_thread threadID;
 } t_philo;
 
 typedef struct s_info
 {
-    pthread_mutex_t *fork_mu;
+    t_mutex *fork_mu;
 
     int num_of_philo;
     int time_to_die;
@@ -31,13 +32,17 @@ typedef struct s_info
     int time_to_sleep;
     int num_must_eat;
 
+    int retERR;
+    int *forks_arr;
+
     long long cur_time;
     long long start_time;
 
     t_philo *philos;
 
-    pthread_mutex_t print;
-    pthread_mutex_t eating;
+    t_mutex print;
+    t_mutex eating;
+    t_mutex waiting;
 } t_info;
 
 typedef struct s_dining
