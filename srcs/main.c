@@ -9,6 +9,8 @@ int main(int argc, char **argv)
     handle_argc(&dining, argc, argv);
     if (!init(&dining))
     {
+        free_all(&dining);
+        return (-1);
     }
     philo(&dining);
     return (0);

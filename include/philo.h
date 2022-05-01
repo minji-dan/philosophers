@@ -31,9 +31,12 @@ typedef struct s_info
     int time_to_eat;
     int time_to_sleep;
     int num_must_eat;
+    int eat_finish;
 
     int retERR;
-    int *forks_arr;
+    int *forks_arr; // 각 mutex의 상태값 저장 
+
+    int finish;
 
     long long cur_time;
     long long start_time;

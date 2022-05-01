@@ -1,6 +1,6 @@
 #include "../include/philo.h"
 
-int check_input(const char *str)
+int check_input(const char *str) //atoi하기 전에 검증하는거구나 
 {
     while (ft_isspace(*str))
         str++;
@@ -15,13 +15,13 @@ int check_input(const char *str)
     return (1);
 }
 
-static int check_arg(int argc, char **argv, int *ret)
+static int check_arg(int argc, char **argv, int *ret) //모든 철학자가 인자만큼 식사만큼 종료됨. 마지막이 3이라고하면 모든 철학자가 식사 세번하면 끝 
 {
     int tmp;
 
-    if (argc == 6)
+    if (argc == 6)//실행인자가 6개일때만 실행해야함 
     {
-        ft_atoi(argv[5], &tmp);
+        ft_atoi(argv[5], &tmp); 
         if (tmp == 0)
             return (0);
         *ret = tmp;
@@ -29,6 +29,11 @@ static int check_arg(int argc, char **argv, int *ret)
     }
     *ret = 0;
     return (1);
+}
+
+static int valid(t_info *info)
+{
+
 }
 
 int handle_argc(t_dining *dining, int argc, char **argv)
@@ -46,5 +51,8 @@ int handle_argc(t_dining *dining, int argc, char **argv)
         !ft_atoi(argv[3], &(dining->info.time_to_eat)) || !ft_atoi(argv[4], &(dining->info.time_to_sleep)) \ 
     || !check_arg(argc, argv, &(dining->info.num_must_eat)))
         return (print_err("Error\n"));
-    /**/
+    dining->info.eat_finish = 0;
+    dining->info.finish = 0;
+    dining->info.restERR = 0;
+    return (valid(int argc, char **argv, int *ret));
 }

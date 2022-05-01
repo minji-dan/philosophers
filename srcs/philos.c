@@ -1,12 +1,50 @@
 
 #include "../include/philo.h"
 
-static void table_status(t_dining *dining)
+static void monitoring(t_dining *dining)
 {
+    t_philo curr;
+    int i;
+
+    usleep(1000);
+    while (!dining->info.check_last_eat_time)
+    {
+        i = 0;
+        while (i < dining->info.num_of_philo && !(dining->info.num_must_eat))
+        {
+            pthread_mutex_lock(&(dining->info.eating));
+            curr = &(dining->philos[i]);
+            if (ft_get_time() - curr->check_last_eat_time > dining->info.time_to_die)
+            {
+                
+            }
+            pthread_mutex_unlock(&(dining->info.eating));
+            i++;
+        }
+        if ()
+    }
+    
 }
 
 static void dest_philo(t_dining *dining, int i)
 {
+    int j;
+
+    j = 0;
+    while (j < i)
+    {
+        pthread_join(dining->philos[j].threadID, NULL);
+        j++;
+    }
+    j = 0;
+    while (j < i)
+        pthread_mutex_destroy(&(dining->info.fork_mu[j++]));
+    pthread_mutex_destroy(&(dining->info.print));
+    pthread_mutex_destroy(&(dining->info.eating));
+    pthread_mutex_destroy(&(dining->info.waiting));
+    free(dining->info.fork_mu);
+    free(dining->info.forks_arr);
+    free(dining->philos);
 }
 
 void philos(t_dining *dining)
@@ -15,7 +53,7 @@ void philos(t_dining *dining)
     void *tmp;
 
     i = 0;
-    pthread_mutex_lock(&(dining->info.waiting));
+    pthread_mutex_lock(&(dining->info.waiting)); //이거 왜걸음?
     while (i < dining->info.num_of_philo)
     {
         tmp = (void *)&dining->philos[i];
@@ -28,8 +66,8 @@ void philos(t_dining *dining)
         i++;
     }
     dining->info.start_time = ft_get_time();
-    pthread_mutex_unlock(&(dining->info.waiting));
+    pthread_mutex_unlock(&(dining->info.waiting)); //이거 왜 걸음? 
     if (!dining->info.retERR)
-        table_status(dining);
+        monitoring(dining);
     dest_philo(dining, i);
 }

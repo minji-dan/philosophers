@@ -19,3 +19,21 @@ void free_all(t_dining *t_dining)
     if (t_dining->philos)
         free(t_dining->philos);
 }
+
+int print_err(const char *str)
+{
+    int ret;
+    int len;
+
+    ret = 0;
+    len = 1;
+    while (len - ret > 0)
+    {
+        len = ft_strlen(str);
+        if (str)
+            ret = write(2, str, len);
+        if (ret == -1)
+            break;
+    }
+    return (-1);
+}
