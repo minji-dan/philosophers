@@ -1,7 +1,10 @@
 #include "../include/philo.h"
 
-static int init_mut(t_info *info)
+static int init_mutex(t_info *info)
 {
+    if (pthread_mutex_init(&info->print, NULL) || pthread_mutex_init(&info->eating, NULL) || pthread_mutex_init(&info->waiting, NULL) || !init_fork(info))
+        return (0);
+    return (1);
 }
 
 static int init_philo(t_dining *dining)
@@ -31,7 +34,7 @@ int init(t_dining *dining)
     dining->philos = NULL;
     info->fork_mu = NULL;
     info->forks_arr = NULL;
-    if (!init_mut(info))
+    if (!init_mutex(info))
         return (print_err("Error!\n"));
     if (!init_philo(dining))
         return (print_err("Error!\n"));

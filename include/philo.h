@@ -61,4 +61,8 @@ int check_input(const char *str);
 static int check_arg(int argc, char **argv, int *ret);
 int handle_argc(t_dining *dining, int argc, char **argv);
 
+static int init_mutex(t_info *info);
+static int init_philo(t_dining *dining);
+int init(t_dining *dining);
+
 #endif
