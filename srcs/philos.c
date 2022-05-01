@@ -3,11 +3,11 @@
 
 static void monitoring(t_dining *dining)
 {
-    t_philo curr;
+    t_philo *curr;
     int i;
 
     usleep(1000);
-    while (!dining->info.check_last_eat_time)
+    while (!dining->info.eat_finish)
     {
         i = 0;
         while (i < dining->info.num_of_philo && !(dining->info.num_must_eat))
@@ -16,14 +16,12 @@ static void monitoring(t_dining *dining)
             curr = &(dining->philos[i]);
             if (ft_get_time() - curr->check_last_eat_time > dining->info.time_to_die)
             {
-                
             }
             pthread_mutex_unlock(&(dining->info.eating));
             i++;
         }
         if ()
     }
-    
 }
 
 static void dest_philo(t_dining *dining, int i)
@@ -66,7 +64,7 @@ void philos(t_dining *dining)
         i++;
     }
     dining->info.start_time = ft_get_time();
-    pthread_mutex_unlock(&(dining->info.waiting)); //이거 왜 걸음? 
+    pthread_mutex_unlock(&(dining->info.waiting)); //이거 왜 걸음?
     if (!dining->info.retERR)
         monitoring(dining);
     dest_philo(dining, i);
