@@ -1,5 +1,29 @@
 #include "../include/philo.h"
 
+static int init_fork(t_info *info)
+{
+    int i;
+    int num;
+
+    num = info->num_of_philo;
+    info->forks_arr = (int *)malloc(sizeof(int) * num);
+    if (!info->forks_arr)
+        return (0);
+    i = -1;
+    while (++i < num)
+        info->forks_arr[i] = 0;
+    info->fork_mu = (t_mutex *)malloc(sizeof(t_mutex) * num);
+    if (!info->fork_mu)
+        return (0);
+    i = -1;
+    while (++i < num)
+    {
+        if (pthread_mutex_init(&(info->fork_mu[i]), NULL))
+            return (0);
+    }
+    return (1);
+}
+
 static int init_mutex(t_info *info)
 {
     if (pthread_mutex_init(&info->print, NULL) || pthread_mutex_init(&info->eating, NULL) || pthread_mutex_init(&info->waiting, NULL) || !init_fork(info))
