@@ -1,6 +1,6 @@
 #include "../include/philo.h"
 
-int check_input(const char *str) //atoi하기 전에 검증하는거구나 
+int check_input(const char *str) //atoi하기 전에 검증하는거구나
 {
     while (ft_isspace(*str))
         str++;
@@ -15,13 +15,13 @@ int check_input(const char *str) //atoi하기 전에 검증하는거구나
     return (1);
 }
 
-static int check_arg(int argc, char **argv, int *ret) //모든 철학자가 인자만큼 식사만큼 종료됨. 마지막이 3이라고하면 모든 철학자가 식사 세번하면 끝 
+static int check_arg(int argc, char **argv, int *ret) //모든 철학자가 인자만큼 식사만큼 종료됨. 마지막이 3이라고하면 모든 철학자가 식사 세번하면 끝
 {
     int tmp;
 
-    if (argc == 6)//실행인자가 6개일때만 실행해야함 
+    if (argc == 6) //실행인자가 6개일때만 실행해야함
     {
-        ft_atoi(argv[5], &tmp); 
+        ft_atoi(argv[5], &tmp);
         if (tmp == 0)
             return (0);
         *ret = tmp;
@@ -33,7 +33,11 @@ static int check_arg(int argc, char **argv, int *ret) //모든 철학자가 인�
 
 static int valid(t_info *info)
 {
-
+    if (info->num_of_philo < 1 || info->num_of_philo > 200)
+        return (print_err("num_of_philo is error\n"));
+    if (info->time_to_die == 0 || info->time_to_eat == 0 || info->time_to_sleep == 0)
+        return (print_err("time error \n"));
+    return (1);
 }
 
 int handle_argc(t_dining *dining, int argc, char **argv)
