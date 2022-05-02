@@ -1,6 +1,20 @@
 
 #include "../include/philo.h"
 
+static void eat_check(t_dining *dining)
+{
+    int i;
+
+    i = 0;
+    if (dining->info.num_must_eat)
+    {
+        while (i < dining->info.num_of_philo && dining->philos[i].eat_time >= dining->info.num_must_eat)
+            i++;
+        if (i == dining->info.num_of_philo)
+            dining->info.eat_finish = 1;
+    }
+}
+
 static void monitoring(t_dining *dining)
 {
     t_philo *curr;
@@ -16,11 +30,14 @@ static void monitoring(t_dining *dining)
             curr = &(dining->philos[i]);
             if (ft_get_time() - curr->check_last_eat_time > dining->info.time_to_die)
             {
+                /* */
             }
             pthread_mutex_unlock(&(dining->info.eating));
             i++;
         }
-        if ()
+        if (dining->info.finish)
+            break;
+        eat_check(dining);
     }
 }
 
