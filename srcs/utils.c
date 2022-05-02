@@ -40,6 +40,7 @@ int ft_strlen(const char *str)
     return (i);
 }
 
+/**/
 int print_err(const char *str)
 {
     int ret;
@@ -56,4 +57,8 @@ int print_err(const char *str)
             break;
     }
     return (-1);
+}
+
+void philo_print()
+{
 }
