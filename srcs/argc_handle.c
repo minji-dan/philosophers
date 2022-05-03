@@ -1,6 +1,6 @@
 #include "../include/philo.h"
 
-int check_input(const char *str) //atoi하기 전에 검증하는거구나
+int check_input(const char *str) //atoi하기 전에 검증
 {
     while (ft_isspace(*str))
         str++;
@@ -15,7 +15,8 @@ int check_input(const char *str) //atoi하기 전에 검증하는거구나
     return (1);
 }
 
-static int check_arg(int argc, char **argv, int *ret) //모든 철학자가 인자만큼 식사만큼 종료됨. 마지막이 3이라고하면 모든 철학자가 식사 세번하면 끝
+//모든 철학자가 인자만큼 식사하고 종료됨. 마지막이 3이라고하면 모든 철학자가 식사 세번하면 끝
+static int check_arg(int argc, char **argv, int *ret) 
 {
     int tmp;
 
@@ -50,10 +51,11 @@ int handle_argc(t_dining *dining, int argc, char **argv)
         if (!check_input(argv[i]))
             return (print_err("Error\n"));
     }
-    if (!ft_atoi(argv[1], &(dining->info.num_of_philo)) \ 
-    || !ft_atoi(argv[2], &(dining->info.time_to_die)) ||
-        !ft_atoi(argv[3], &(dining->info.time_to_eat)) || !ft_atoi(argv[4], &(dining->info.time_to_sleep)) \ 
-    || !check_arg(argc, argv, &(dining->info.num_must_eat)))
+    if (!ft_atoi(argv[1], &(dining->info.num_of_philo)) \ //철학자 수
+    || !ft_atoi(argv[2], &(dining->info.time_to_die)) ||   //수명 
+        !ft_atoi(argv[3], &(dining->info.time_to_eat)) //먹는시간
+        || !ft_atoi(argv[4], &(dining->info.time_to_sleep)) \ //자는시간
+    || !check_arg(argc, argv, &(dining->info.num_must_eat))) //[모든 철학자의 식사 수]
         return (print_err("Error\n"));
     dining->info.eat_finish = 0;
     dining->info.finish = 0;

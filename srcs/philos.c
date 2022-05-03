@@ -41,14 +41,14 @@ static void monitoring(t_dining *dining)
     }
 }
 
-static void dest_philo(t_dining *dining, int i)
+static void dest_philo(t_dining *dining, int i) //뮤텍스 객체 파괴 
 {
     int j;
 
     j = 0;
     while (j < i)
     {
-        pthread_join(dining->philos[j].threadID, NULL);
+        pthread_join(dining->philos[j].threadID, NULL); //스레드 종료 대기
         j++;
     }
     j = 0;
@@ -68,20 +68,21 @@ void philos(t_dining *dining)
     void *tmp;
 
     i = 0;
-    pthread_mutex_lock(&(dining->info.waiting)); //이거 왜걸음?
+    pthread_mutex_lock(&(dining->info.waiting)); /* mutex lock */ 
     while (i < dining->info.num_of_philo)
     {
-        tmp = (void *)&dining->philos[i];
-        if (pthread_create(&(dining->philos[i].threadID), NULL, routine, tmp))
+        tmp = (void *)&dining->philos[i]; //각각의 철학자가 1부터 num_of_philo 숫자 범위 중의 수를 부여받게 됨 
+        if (pthread_create(&(dining->philos[i].threadID), NULL, routine, tmp)) /* 스레드 생성 */ 
+        //routine : 루틴은 메인 스레드에서 모든 철학자를 생성하기 전까지 대기
         {
-            dining->info.retERR = 1;
-            print_err("Error!\n");
+            dining->info.retERR = 1; /* 에러체크 */
+            print_err("Error!\n"); //에러 출력 
             break;
         }
         i++;
     }
-    dining->info.start_time = ft_get_time();
-    pthread_mutex_unlock(&(dining->info.waiting)); //이거 왜 걸음?
+    dining->info.start_time = ft_get_time(); /* 시간 초기화 */ 
+    pthread_mutex_unlock(&(dining->info.waiting)); /* mutex unlock */
     if (!dining->info.retERR)
         monitoring(dining);
     dest_philo(dining, i);

@@ -26,15 +26,16 @@ typedef struct s_info
 {
     t_mutex *fork_mu;
 
-    int num_of_philo;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-    int num_must_eat;
+    int num_of_philo; //철학자의 수, 즉 포크의 갯수
+    int time_to_die; //1) 마지막 식사를 시작하고 n 밀리 초 안에 먹기 시작하지않거나 2) 시뮬레이션을 시작한 후 n 밀리 초 안에 먹기 시작하지 않으면 -> 죽음 
+    int time_to_eat; //밀리세컨 단위. 철학자가 식사를 하는 시간. 이 시간동안 철학자는 포크 두 개를 들고 있다.
+    int time_to_sleep; //밀리세컨 단위. 철학자가 자는 시간
+    int num_must_eat; //optional. 모든 철학자가 n번을 다 먹으면 시뮬레이션 중지. 지정하지 않으면 simulation은 철학자가 죽었을 때만 중지 
     int eat_finish;
 
     int retERR;
-    int *forks_arr; // 각 mutex의 상태값 저장 
+    int *forks_arr; // 각 mutex의 상태값 저장.
+    //fork 배열을 생성하여 하나의 포크당 뮤텍스를 생성함으로써 해당 철학자가 포크를 집었는지 확인 하는 변수 필요 없이 mutex 그 자체로 확인 가능  
 
     int finish;
 
