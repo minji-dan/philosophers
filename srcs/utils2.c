@@ -35,5 +35,17 @@ int print_err(const char *str)
         if (ret == -1)
             break;
     }
-    return (-1);
+    return (0);
+}
+
+void print_state(char *msg, t_info *info, int pid)
+{
+    pthread_mutex_lock(&(info->print));
+    if (!(info->finish) && !(info->eat_finish))
+    {
+        printf("%lld ", get_time() - info->start_time);
+        printf("%d ", pid + 1);
+        printf("%s\n", msg);
+    }
+    pthread_mutex_unlock(&(info->print));
 }

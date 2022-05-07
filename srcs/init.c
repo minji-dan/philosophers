@@ -39,6 +39,7 @@ static int init_philo(t_dining *dining)
     dining->philos = malloc(sizeof(t_philo) * (dining->info.num_of_philo));
     if (!dining->philos)
         return (0);
+    i = -1;
     while (++i < dining->info.num_of_philo)
     {
         dining->philos[i].my_seat = i;
