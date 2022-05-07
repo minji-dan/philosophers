@@ -23,7 +23,7 @@ void *routine(void *philo)
         usleep(10000);
     while (!info->finish && !info->eat_finish)
     {
-        if (!philo_state(info, curr))
+        if (philo_state(info, curr))
             break;
         print_state("is sleeping", info, curr->my_seat);
         check_time(info, 2);

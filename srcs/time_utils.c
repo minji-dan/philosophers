@@ -30,6 +30,7 @@ void check_time(t_info *info, int mode)
         if (curr - start >= dur || tmp == 1)
             return;
         usleep(tmp);
-        tmp /= 2;
+        if (tmp > 500)
+            tmp /= 2;
     }
 }
