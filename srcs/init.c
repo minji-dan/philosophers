@@ -26,7 +26,6 @@ static int init_fork(t_info *info)
 
 static int init_mutex(t_info *info)
 {
-    /* 뮤텍스 객체 초기화 */
     if (pthread_mutex_init(&info->print, NULL) || pthread_mutex_init(&info->eating, NULL) || pthread_mutex_init(&info->waiting, NULL) || !init_fork(info))
         return (0);
     return (1);

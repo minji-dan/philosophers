@@ -5,7 +5,7 @@ static int waiting_others(t_info *info)
     pthread_mutex_lock(&(info->waiting));
     pthread_mutex_unlock(&(info->waiting));
     if (info->retERR)
-        return (0); //return error
+        return (0);
     return (1);
 }
 

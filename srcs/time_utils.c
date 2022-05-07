@@ -5,7 +5,7 @@ long long get_time(void)
     struct timeval time;
     long long ret;
 
-    gettimeofday(&time, NULL); //time과의 차이: 마이크로초 단위까지 알려줌
+    gettimeofday(&time, NULL);
     ret = time.tv_sec * 1000 + time.tv_usec / 1000;
     return (ret);
 }
@@ -22,7 +22,7 @@ void check_time(t_info *info, int mode)
         dur = info->time_to_eat;
     else if (mode == 2)
         dur = info->time_to_sleep;
-    tmp = dur * 1000 / 2;
+    tmp = dur * 1000 / 3;
     start = get_time();
     while (!(info->finish))
     {
@@ -30,7 +30,7 @@ void check_time(t_info *info, int mode)
         if (curr - start >= dur || tmp == 1)
             return;
         usleep(tmp);
-        if (tmp > 500)
+        if (tmp > 750)
             tmp /= 2;
     }
 }
