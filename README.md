@@ -1,8 +1,6 @@
 # philosophers
 main point - 최대한 context switch에 소요되는 시간을 줄이고 임계구역을 구분하여 deadlock이 발생하지 않도록 설계하는 것 
 
-![image](https://user-images.githubusercontent.com/69064310/168199005-d551f94d-22c0-4186-afd3-8a13db07cfdd.png)
-
 ## Install
 ```
 $ make
