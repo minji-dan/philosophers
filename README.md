@@ -1,4 +1,7 @@
 # philosophers
+main point - 최대한 context switch에 소요되는 시간을 줄이고 임계구역을 구분하여 deadlock이 발생하지 않도록 설계하는 것 
+
+![image](https://user-images.githubusercontent.com/69064310/168199005-d551f94d-22c0-4186-afd3-8a13db07cfdd.png)
 
 ## Install
 ```
@@ -21,4 +24,16 @@ $ ./philo [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [
 ```
 $ ./philo 4 410 200 200 5 > f1    //save to f1 file
 $ cat f1 | grep eating | wc -l    //check the number of eating 
+$ 20
 ```
+
+```
+$ ./philo 5 410 200 200 7 > f1    //save to f1 file
+$ cat f1 | grep eating | wc -l    //check the number of eating 
+$ 36 
+```
+
+홀수의 경우-이 subject는 모든 철학자들이 n번 “이상" 먹었을 때 시뮬레이션을 종료하라는 언급만 있음. 그래서 “최소한"의 조건으로 문제를 푼 것! 홀수명의 철학자로 테스트하게되면 무조건 N+1번 먹는 철학자가 존재할 수 밖에 없다
+
+## philosopher visualizer
+https://nafuka11.github.io/philosophers-visualizer/ 
