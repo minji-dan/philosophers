@@ -35,3 +35,14 @@ $ 36
 
 ## philosopher visualizer
 https://nafuka11.github.io/philosophers-visualizer/ 
+
+## activity monitor_bonus
+
+<img width="706" alt="Screen Shot 2022-06-20 at 9 12 56 PM" src="https://user-images.githubusercontent.com/69064310/174599165-c689b005-5175-497b-9397-ccc17596351f.png">
+
+
+철학자를 4명으로 설정했을 경우
+
+- 철학자 4명 : 프로세스 4개
+- 모니터링 1개 : 프로세스 1개
+- 부모 프로세스 : 프로세스 1개
